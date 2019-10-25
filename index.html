@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div id="app">
+        <h1>NBA Stats</h1>
+
+        <form v-on:keyup.prevent="fetchREST">
+            <input type="text" v-model="prefix">
+        </form>
+        <ul>
+            <li v-for="item in players">
+                {{ item.last_name }}, {{ item.first_name }}
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+
+</html>
