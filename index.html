@@ -2,26 +2,60 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="http://pnicholsbyu.com/creativeProject3/styles.css">
 </head>
 
 <body>
     <div id="app">
-        <h1>NBA Stats</h1>
+        <h1>NBA Stat Machine</h1>
+        <h3>Enter in the name of your favorite NBA players and click on their name to view their stats for the 2018-2019 season</h3>
 
         <form v-on:keyup.prevent="fetchREST">
             <input type="text" v-model="prefix">
         </form>
-        <ul>
-            <li v-for="item in players">
+        <ul v-if="!viewStats">
+            <li v-for="item in players" @click="getStats(item.id)">
                 {{ item.last_name }}, {{ item.first_name }}
             </li>
         </ul>
+        <div v-if="viewStats" id="playerStats">
+            <div class="grid-item">
+                points per game: {{playerData[0].pts}}
+            </div>
+            <div class="grid-item">
+                minutes per game: {{playerData[0].min}} min
+            </div>
+            <div class="grid-item">
+                offensive rebounds per game: {{playerData[0].oreb}}
+            </div>
+            <div class="grid-item">
+                deffensive rebounds per game: {{playerData[0].dreb}}
+            </div>
+            <div class="grid-item">
+                assists per game: {{playerData[0].ast}}
+            </div>
+            <div class="grid-item">
+                steals per game: {{playerData[0].stl}}
+            </div>
+            <div class="grid-item">
+                blocks per game: {{playerData[0].blk}}
+            </div>
+            <div class="grid-item">
+                field goal percentage: {{playerData[0].fg_pct}}
+            </div>
+            <div class="grid-item">
+                3-point percentage: {{playerData[0].fg3_pct}}
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
 </body>
+
+<footer>
+    <a href="https://github.com/panichols98/creativeProject3.git">Github</a>
+</footer>
 
 
 </html>
